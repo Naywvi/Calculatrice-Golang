@@ -106,15 +106,13 @@ func CalculER() {
 }
 func Repeat(Count int) {
 	var (
-		st = Struct.Number
+		st  = Struct.Number
+		Std = Struct.Cond
 	)
-	for range Struct.Cond[Count:] {
-
-		if Struct.Cond[Count] == "+" {
-
+	for range Std[Count:] {
+		if Std[Count] == "+" {
 			st[Count+2] += st[Count]
-
-		} else if Struct.Cond[Count] == "-" {
+		} else if Std[Count] == "-" {
 			if st[Count+2] < st[Count] && Struct.Cond[0] != "-" {
 				println("nothing :)")
 			}
@@ -125,19 +123,17 @@ func Repeat(Count int) {
 				st[Count+2] *= -1
 				break
 			}
-
-		} else if Struct.Cond[Count] == "*" {
+		} else if Std[Count] == "*" {
 			st[Count+2] *= st[Count]
 			break
-
-		} else if Struct.Cond[Count] == "/" {
+		} else if Std[Count] == "/" {
 			save := st[Count]
 			st[Count] = st[Count+2]
 			st[Count+2] = save
 			st[Count+2] /= st[Count]
 			break
 		}
-		Struct.Number[Count], Struct.Number[Count+1], Struct.Number[Count+3] = 0, 0, 0
+		st[Count], st[Count+1], st[Count+3] = 0, 0, 0
 	}
 }
 func Conditions(slice []string) {
